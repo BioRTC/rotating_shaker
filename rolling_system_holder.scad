@@ -13,16 +13,16 @@ screwD = 5;
 screwL = 10;
 spacerL = 10;
 spacerD = 8;
-nrollers = 2;
+nrollers = 4;
 rollerD = 24;
 
 offset = 5;
-rollerVisible = 1;
+rollerVisible = 0;
 
 difference(){
 union(){
     translate([-2*offset,-rollerD/2+2,0]){
-cube([nrollers*rollerD,2*rollerD,2.9]);
+cube([nrollers*rollerD+2*offset,2*rollerD,2.9]);
     }
 for(i = [1 : nrollers]){
     translate([(i-1)*(rollerD+5),0,2]){
