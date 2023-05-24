@@ -25,13 +25,13 @@ union(){
 cube([nrollers*rollerD+2*offset,2*rollerD,2.9]);
     }
 for(i = [1 : nrollers]){
-    translate([(i-1)*(rollerD+5),0,2]){
+    translate([(i-1)*(rollerD+5),0,2-tol]){
         cylinder(d=spacerD+2*tol+wallT,h=spacerL);   
     }//end translate
 }//end for
 
 for(i = [1:nrollers-1]){
-    translate([(i-1)*(rollerD+5)+(rollerD+5)/2,rollerD-5.3,2]){
+    translate([(i-1)*(rollerD+5)+(rollerD+5)/2,rollerD-5.3,2-tol]){
         cylinder(d=spacerD+2*tol+wallT,h=spacerL);
     }//end translate
 
