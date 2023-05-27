@@ -15,18 +15,18 @@ screwD = 5;
 screwL = 10;
 spacerL = 10;
 spacerD = 8;
-nrollers = 3;
+nrollers = 2;
 rollerD = 24;
 pipeD = 21.8;
-
+motorD = 25;
 offset = 5;
 rollerVisible = 0;
-gearsVisible = 1;
+gearsVisible = 0;
 
 difference(){
 union(){
-    translate([-2*offset,-rollerD/2+2,0]){
-    %cube([(nrollers+1)*rollerD+2*offset,2*rollerD,2.9]);
+    translate([-2*offset,-rollerD/2-offset,0]){
+    cube([(nrollers+1)*rollerD+2*offset,2*rollerD,2.9]);
     }
 for(i = [1 : nrollers]){
     translate([(i-1)*(rollerD+5),0,2-tol]){
@@ -42,6 +42,8 @@ for(i = [1:nrollers-1]){
 }//end for
 
 }//end union
+
+    translate([(nrollers)*(rollerD+3.3),0,-1]){cylinder(d=motorD+tol,h=20);}
 
 for(i = [1 : nrollers]){
     translate([(i-1)*(rollerD+5),0,2]){
@@ -79,24 +81,22 @@ for(i = [1:nrollers-1]){
 
 
 module motor_holder(){
-    translate([(nrollers)*(rollerD+5),0,2-tol]){
-        cylinder(d=spacerD+2*tol+wallT,h=spacerL);   
-    }//end translate
 
-    translate([(nrollers-1)*(rollerD+5)+(rollerD+5)/2,35,25]){
-        cube([10,6,50],center=true);
 
-        }
+translate([0,-1-(25+wallT)/2,10]){
+        cube([10,4,20],center=true);
+}//end translate
 
 
 
-    translate([(nrollers-1)*(rollerD+5)+(rollerD+5)/2,rollerD-5.3,30]){
+
+
         difference(){
      cylinder(d=25+wallT,h=20); 
           translate([0,0,-1])  
      cylinder(d=25+2*tol,h=25);   
             }
-    }
+    
     }//end module
 
 if(gearsVisible==1){
@@ -115,9 +115,11 @@ for(i = [1:nrollers-1]){
 
 }//end for
     translate([(nrollers)*(rollerD+3.3),0,2-tol]){
-            spur_gear (modul=1.03, tooth_number=23, width=5, bore=screwD+2*tol, pressure_angle=20, helix_angle=0, optimized=true);
+            %spur_gear (modul=1.03, tooth_number=23, width=5, bore=screwD+2*tol, pressure_angle=20, helix_angle=0, optimized=true);
     }//end translate
     
 }//end translate
 }//end if
-    translate([(nrollers)*(rollerD+3.3),0,2-tol]){motor_holder();}
+    translate([(nrollers)*(rollerD+3.3),0,0-18]){motor_holder();}
+    
+    
