@@ -15,7 +15,7 @@ nutL = 9;
 nutH= 3.9;//5.75;
 holderH = nutH+wallT;
 gearW = 5;
-
+gearVisible=1;
 difference(){
 union(){
 cylinder(d=pipeD+wallT*2+2*tol,h=holderH+5);
@@ -47,6 +47,9 @@ cylinder(d=screwD+tol,h=holderH+10);
 //}//end translate
 }//end difference
 
+if(gearVisible ==1){
+     translate([30,30,0]){
+    spur_gear (modul=1.03, tooth_number=23, width=5, bore=screwD+2*tol, pressure_angle=20, helix_angle=0, optimized=true);
+    }//end translate
 
-
-
+}//end if
